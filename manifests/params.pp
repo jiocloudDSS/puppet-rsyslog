@@ -19,12 +19,12 @@ class rsyslog::params {
   $purge_rsyslog_d                     = false
   $extra_modules                       = []
   $default_template                    = undef
-  $msg_reduction                       = false
+  $msg_reduction                       = true
   $non_kernel_facility                 = false
   $preserve_fqdn                       = false
-  $im_journal_ratelimit_interval       = '600'
-  $im_journal_ratelimit_burst          = '20000'
-  $im_journal_ignore_previous_messages = 'off'
+  #$im_journal_ratelimit_interval       = '600'
+  #$im_journal_ratelimit_burst          = '20000'
+  #$im_journal_ignore_previous_messages = 'off'
   $im_journal_statefile                = false
 
   case $::osfamily {

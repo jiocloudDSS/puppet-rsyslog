@@ -51,12 +51,20 @@
 
 # Log to remote syslog server using <%= scope.lookupvar('rsyslog::client::remote_type') %>
 <% if scope.lookupvar('rsyslog::client::remote_type') == 'tcp' -%>
+<% if scope.lookupvar('rsyslog::client::log_only_radosgw') == true -%>
+if $programname == 'lt-radosgw' or $msg contains 'radosgw' then @@<%= scope.lookupvar('rsyslog::client::server') -%>:<%= scope.lookupvar('rsyslog::client::port') -%>;<%= scope.lookupvar('rsyslog::client::remote_forward_format') -%> 
+<% else -%>
 *.* @@<%= scope.lookupvar('rsyslog::client::server') -%>:<%= scope.lookupvar('rsyslog::client::port') -%>;<%= scope.lookupvar('rsyslog::client::remote_forward_format') -%>
+<% end -%>
 <% else -%>
 <% if scope.lookupvar('rsyslog::client::remote_type') == 'relp' -%>
 *.* :omrelp:<%= scope.lookupvar('rsyslog::client::server') -%>:<%= scope.lookupvar('rsyslog::client::port') -%>;<%= scope.lookupvar('rsyslog::client::remote_forward_format') -%>
 <% else -%>
+<% if scope.lookupvar('rsyslog::client::log_only_radosgw') == true -%>
+if $programname == 'lt-radosgw' or $msg contains 'radosgw' then @<%= scope.lookupvar('rsyslog::client::server') -%>:<%= scope.lookupvar('rsyslog::client::port') -%>;<%= scope.lookupvar('rsyslog::client::remote_forward_format') -%> 
+<% else -%>
 *.* @<%= scope.lookupvar('rsyslog::client::server') -%>:<%= scope.lookupvar('rsyslog::client::port') -%>;<%= scope.lookupvar('rsyslog::client::remote_forward_format') -%>
+<% end -%>
 <% end -%>
 <% end -%>
 <% end -%>
