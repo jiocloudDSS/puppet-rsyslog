@@ -24,13 +24,10 @@ $KLogPermitNonKernelFacility on
 #
 # Set max message size for sending and receiving
 #
-$MaxMessageSize <%= scope.lookupvar('rsyslog::max_message_size') %>
 
 #
 # Set rate limit for messages received.
 # 
-$SystemLogRateLimitInterval <%= scope.lookupvar('rsyslog::system_log_rate_limit_interval') %>
-$SystemLogRateLimitBurst <%= scope.lookupvar('rsyslog::system_log_rateLimit_burst') %>
 
 <% if scope.lookupvar('rsyslog::default_template')  and scope.lookupvar('rsyslog::default_template') != :undef -%>
 #
@@ -68,18 +65,6 @@ $OmitLocalLogging on
 <% end -%>
 
 # Settings for imjournal (If supported)
-<% if scope.lookupvar('rsyslog::im_journal_statefile') -%>
-$IMJournalStateFile <%=scope.lookupvar('rsyslog::im_journal_statefile') %>
-<% end %>
-<% if scope.lookupvar('rsyslog::im_journal_ignore_previous_messages') -%>
-$ImjournalIgnorePreviousMessages <%=scope.lookupvar('rsyslog::im_journal_ignore_previous_messages') %>
-<% end %>
-<% if scope.lookupvar('rsyslog::im_journal_ratelimit_interval') -%>
-$imjournalRatelimitInterval <%=scope.lookupvar('rsyslog::im_journal_ratelimit_interval') %>
-<% end %>
-<% if scope.lookupvar('rsyslog::im_journal_ratelimit_burst') -%>
-$imjournalRatelimitBurst <%=scope.lookupvar('rsyslog::im_journal_ratelimit_burst') %>
-<% end %>
 
 #
 # Include all config files in <%= scope.lookupvar('rsyslog::rsyslog_d') %>
@@ -89,8 +74,8 @@ $IncludeConfig <%= scope.lookupvar('rsyslog::rsyslog_d') -%>*.conf
 #
 # Emergencies are sent to everybody logged in.
 #
-<% if @rsyslog_version and @rsyslog_version.split('.')[0].to_i >= 7 -%>
-*.emerg	:omusrmsg:*
-<% else -%>
-*.emerg	*
-<% end -%>
+#<% if @rsyslog_version and @rsyslog_version.split('.')[0].to_i >= 7 -%>
+#*.emerg	:omusrmsg:*
+#<% else -%>
+#*.emerg	*
+#<% end -%>
