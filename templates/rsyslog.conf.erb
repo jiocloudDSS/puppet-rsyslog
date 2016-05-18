@@ -54,6 +54,7 @@ $DirCreateMode <%= scope.lookupvar('rsyslog::perm_dir') %>
 $PrivDropToUser <%= scope.lookupvar('rsyslog::run_user') %>
 $PrivDropToGroup <%= scope.lookupvar('rsyslog::run_group') %>
 $WorkDirectory <%= scope.lookupvar('rsyslog::spool_dir') %>
+$EscapeControlCharactersOnReceive <%= scope.lookupvar('rsyslog::escapeControlCharacter') %>
 <% if scope.lookupvar('rsyslog::umask') -%>
 $Umask <%= scope.lookupvar('rsyslog::umask') %>
 <% end -%>

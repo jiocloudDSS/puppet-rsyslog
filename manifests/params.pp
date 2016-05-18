@@ -26,6 +26,7 @@ class rsyslog::params {
   #$im_journal_ratelimit_burst          = '20000'
   #$im_journal_ignore_previous_messages = 'off'
   $im_journal_statefile                = false
+  $escapeControlCharacter              = 'off' # This is for not converting control characters to octal numbers
 
   case $::osfamily {
     debian: {
