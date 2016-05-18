@@ -48,7 +48,7 @@ class rsyslog::client (
   $custom_config             = undef,
   $custom_params             = undef,
  # $server                    = 'log',
-  $server                    = '10.140.222.240', #centralized logging server is bstrap of idc1 in staging for the time being, after adding virtual IP through keepalived, mon6 is the backup for the time being
+  $server                    = '10.140.222.240', #centralized logging server is bstrap of idc1 in staging for the time being, after adding virtual IP in HAMode, mon6 is the backup right now 
   $port                      = '514',
   $remote_servers            = false,
   $ssl_ca                    = undef,

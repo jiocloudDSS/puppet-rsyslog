@@ -1,4 +1,4 @@
-# An "In-Memory Queue" is created for remote logging. This parameters enable reliable forwarding for TCP connections. 
+# An "In-Memory Queue" is created for remote logging. These parameters enable reliable forwarding for TCP connections. 
 $WorkDirectory <%= scope.lookupvar('rsyslog::spool_dir') -%>    # where to place spool files
 $ActionQueueFileName queue      # unique name prefix for spool files
 $ActionQueueSaveOnShutdown on   # save messages to disk on shutdown
