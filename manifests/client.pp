@@ -40,7 +40,7 @@ class rsyslog::client (
   $log_only_radosgw	     = true,
   #$remote_type               = 'tcp',
   #$remote_forward_format     = 'RSYSLOG_ForwardFormat',
-  $log_local                 = false,
+  $log_local                 = true,
   $log_local_custom          = undef,
   $log_auth_local            = false,
   $listen_localhost          = false,
