@@ -17,19 +17,19 @@ auth.info;authpriv.info		/var/log/auth.log
 # First some standard log files.  Log by facility.
 #
 *.*;auth,authpriv.none         -/var/log/syslog
-cron.*                          /var/log/cron.log
-daemon.*                       -/var/log/daemon.log
+#cron.*                          /var/log/cron.log
+#daemon.*                       -/var/log/daemon.log
 kern.*                         -/var/log/kern.log
 #lpr.*                          -/var/log/lpr.log
 mail.*                         -/var/log/mail.log
-user.*                         -/var/log/user.log
+#user.*                         -/var/log/user.log
 
 #
 # Logging for the mail system.  Split it up so that
 # it is easy to write scripts to parse these files.
 #
-mail.info                      -/var/log/mail.info
-mail.warn                      -/var/log/mail.warn
+#mail.info                      -/var/log/mail.info
+#mail.warn                      -/var/log/mail.warn
 mail.err                        /var/log/mail.err
 
 #
@@ -42,13 +42,13 @@ news.notice                     -/var/log/news/news.notice
 #
 # Some "catch-all" log files.
 #
-*.=debug;\
-       auth,authpriv.none;\
-       news.none;mail.none     -/var/log/debug
-*.=info;*.=notice;*.=warn;\
-       auth,authpriv.none;\
-       cron,daemon.none;\
-       mail,news.none          -/var/log/messages
+#*.=debug;\
+#       auth,authpriv.none;\
+#       news.none;mail.none     -/var/log/debug
+#*.=info;*.=notice;*.=warn;\
+#       auth,authpriv.none;\
+#       cron,daemon.none;\
+#       mail,news.none          -/var/log/messages
 
 #
 # I like to have messages displayed on the console, but only on a virtual
@@ -67,10 +67,10 @@ news.notice                     -/var/log/news/news.notice
 # NOTE: adjust the list below, or you'll go crazy if you have a reasonably
 #      busy site..
 #
-daemon.*;mail.*;\
-        news.err;\
-        *.=debug;*.=info;\
-        *.=notice;*.=warn       |/dev/xconsole
+#daemon.*;mail.*;\
+#        news.err;\
+#        *.=debug;*.=info;\
+#        *.=notice;*.=warn       |/dev/xconsole
 <% elsif scope.lookupvar('rsyslog::log_style') == 'redhat' -%>
 # Log all kernel messages to the console.
 # Logging much else clutters up the screen.
@@ -115,5 +115,4 @@ local7.*                       -/var/log/boot.log
 
 <% if scope.lookupvar('rsyslog::client::log_local_custom') -%>
  # Custom fragment
- <%= scope.lookupvar('rsyslog::client::log_local_custom') %>
 <% end -%>
