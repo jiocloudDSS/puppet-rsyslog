@@ -1,11 +1,9 @@
 # An "In-Memory Queue" is created for remote logging. These parameters enable reliable forwarding for TCP connections. 
-$ModLoad imfile              
-$InputFileName /var/log/ceph/radosgw.log
-$InputFileTag rgwlog
-$InputFileStateFile rgwlog
-$InputFileFacility local7                        
-$InputRunFileMonitor
-$InputFilePollInterval 1
+$WorkDirectory /var/spool/rsyslog    # where to place spool files
+$ActionQueueFileName queue      # unique name prefix for spool files
+$ActionQueueSaveOnShutdown on   # save messages to disk on shutdown
+$ActionQueueType LinkedList     # run asynchronously
+$ActionResumeRetryCount -1      # infinety retries if host is down
 
 <% if scope.lookupvar('rsyslog::client::log_templates') and ! scope.lookupvar('rsyslog::client::log_templates').empty?-%>
 
